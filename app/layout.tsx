@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import LiffProvider from "./_components/LiffProvider"; // LIFF SDK初期化のためのプロバイダー
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +22,8 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${geistSans.variable} h-full scroll-smooth antialiased`}>
       <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
-        {children}
+        {/* LIFFProviderでラップしてアプリ全体でLIFF SDKを使えるようにする */}
+        <LiffProvider>{children}</LiffProvider>
       </body>
     </html>
   );
