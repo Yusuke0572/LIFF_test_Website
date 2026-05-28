@@ -13,7 +13,7 @@ export default function LiffProvider({ children }: { children: React.ReactNode }
       await liff.init({ liffId: process.env.NEXT_PUBLIC_LIFF_ID! });
 
       // LINE内で開いている場合のみプロフィールを取得してログを記録
-      if (liff.isInClient() && liff.isLoggedIn()) {
+      if (supabase && liff.isInClient() && liff.isLoggedIn()) {
         const profile = await liff.getProfile();
         await supabase.from('liff_visits').insert({
           user_id: profile.userId,
